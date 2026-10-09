@@ -1,4 +1,4 @@
-/* Variables y estilos base */
+/* Variables globales para reutilizar colores y medidas */
 :root {
     --naranja: #ffbf69;
     --menta: #cbf3f0;
@@ -32,11 +32,11 @@ ul {
 }
 
 a {
-    color: inherit;
+    color: inherit; /* El enlace utiliza el color de texto que recibe de su contexto, en lugar de mostrar necesariamente el color azul predeterminado del navegador. */
     text-decoration: none;
 }
 
-/* Accesibilidad */
+/* Muestra el foco al navegar por los enlaces con el teclado */
 a:focus-visible {
     outline: 3px solid var(--texto);
     outline-offset: 3px;
@@ -52,8 +52,9 @@ a:focus-visible {
 }
 
 .btn:hover {
+    /* Eleva el botón y agrega una sombra al pasar el cursor */
     transform: translateY(-3px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18); 
 }
 
 /* Botón principal */
@@ -121,17 +122,20 @@ a:focus-visible {
     padding-bottom: 4px;
 }
 
+/* Crea un subrayado decorativo sin añadir elementos al HTML */
 .nav-links a::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: 0;
+    /* El subrayado comienza sin ancho */
     width: 0;
     height: 2px;
     background-color: var(--texto);
     transition: width 0.3s ease;
 }
 
+/* Expande el subrayado hasta ocupar el ancho del enlace */
 .nav-links a:hover::after {
     width: 100%;
 }
@@ -151,6 +155,7 @@ a:focus-visible {
 }
 
 .header-text h1 {
+    /* Ajusta el tamaño del título según la pantalla */
     font-size: clamp(56px, 10.2vw, 170px);
     font-weight: 900;
     line-height: 1;
@@ -167,6 +172,7 @@ a:focus-visible {
 
 /* Imagen del header */
 .header-img {
+    /* Permite superponer la imagen sobre el encabezado */
     position: absolute;
     top: 2.5vw;
     right: 4vw;
@@ -176,6 +182,7 @@ a:focus-visible {
     transition: transform 0.5s ease;
 }
 
+/* Gira y amplía ligeramente la imagen al pasar el cursor */
 .header-img:hover {
     transform: rotate(4deg) scale(1.03);
 }
@@ -222,7 +229,7 @@ a:focus-visible {
 
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Organiza las tarjetas en tres columnas iguales */
     gap: 0;
 }
 
@@ -236,7 +243,7 @@ a:focus-visible {
 .card img {
     width: 150px;
     height: 150px;
-    object-fit: contain;
+    object-fit: contain; /* Evita deformar o recortar las imágenes */
     margin-bottom: 18px;
     transition: transform 0.3s ease;
 }
@@ -248,7 +255,7 @@ a:focus-visible {
 }
 
 .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-8px); /* Eleva la tarjeta al pasar el cursor */
 }
 
 .card:hover img {
@@ -262,7 +269,7 @@ a:focus-visible {
     align-items: center;
     justify-content: space-between;
     padding: 7.2vw var(--margen);
-    overflow: hidden;
+    overflow: hidden; /* Recorta la decoración que sobresale de la sección */
 }
 
 /* Decoración */
@@ -270,10 +277,10 @@ a:focus-visible {
     position: absolute;
     left: 5%;
     top: 56%;
-    transform: translateY(-50%);
+    transform: translateY(-50%); /* Centra verticalmente la decoración */
     width: 90%;
     max-width: none;
-    z-index: 0;
+    z-index: 0; /* Mantiene la decoración detrás del contenido */
 }
 
 /* Contenido de reglas */
@@ -284,7 +291,7 @@ a:focus-visible {
 }
 
 .rules-text {
-    flex: 0 0 58%;
+    flex: 0 0 58%; /* Reserva el 58 % del espacio para el texto */
 }
 
 .rules-text h2 {
@@ -297,7 +304,7 @@ a:focus-visible {
 
 /* Foto */
 .rules-photo {
-    flex: 0 0 30%;
+    flex: 0 0 30%; /* Reserva el 30 % del espacio para la fotografía */
     width: 30%;
     height: auto;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -335,7 +342,7 @@ a:focus-visible {
 
 /* Responsive */
 
-/* Tablet */
+/* Tablets: Reorganiza el contenido para pantallas medianas */
 @media (max-width: 900px) {
     .header {
         min-height: auto;
@@ -343,6 +350,7 @@ a:focus-visible {
     }
 
     .header-content {
+        /* Apila el texto y la imagen verticalmente */
         flex-direction: column;
         text-align: center;
         padding: 32px 0 0;
@@ -360,13 +368,14 @@ a:focus-visible {
 
     /* Imagen en móvil */
     .header-img {
+        /* Devuelve la imagen al flujo normal del contenido */
         position: static;
         width: 80%;
         margin: 24px auto 0;
     }
 
     .catalog-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); /* Muestra dos tarjetas por fila */
         row-gap: 40px;
     }
 
@@ -408,14 +417,14 @@ a:focus-visible {
     }
 }
 
-/* Móvil */
+/* Móviles: Adapta el catalogo y los espacios a pantallas pequeñas */
 @media (max-width: 600px) {
     .nav-links {
         gap: 20px;
     }
 
     .catalog-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Muestra una tarjeta por fila */
     }
 
     .header-img {
